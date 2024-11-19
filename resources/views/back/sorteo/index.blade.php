@@ -85,7 +85,7 @@
       
 
 
-      .btn-sendMail {
+      body.dark-mode .btn-sendMail {
         background-color: #000;
         color: #ff0000;
         border: 2px solid #ff0000;
