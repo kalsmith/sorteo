@@ -58,10 +58,59 @@
         border: 2px solid #28a745;
       }
 
+      body.dark-mode {
+        background-color: #000;
+        color: #ff0000;
+      }
+
+      body.dark-mode #numero {
+        color: #ff0000;
+        border-color: #ff0000;
+      }
+
+      .btn-sorteo, .btn-dark-mode {
+        width: 200px;
+        font-size: 1.2rem;
+        margin-top: 20px;
+        transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+      }
+
+      body.dark-mode .btn-sorteo,
+      body.dark-mode .btn-dark-mode {
+        background-color: #000;
+        color: #ff0000;
+        border: 2px solid #ff0000;
+      }
+
+      
+
+
+      .btn-sendMail {
+        background-color: #000;
+        color: #ff0000;
+        border: 2px solid #ff0000;
+      }
+
+      body.dark-mode #resultado {
+        background-color: #333;
+        color: #ff0000;
+      }
+
+      body.dark-mode h1 {
+      color: #ff0000; /* Cambia el color del texto del <h1> */
+      transition: color 0.3s; /* Transición suave para el cambio de color */
+    }
+
     </style>
   </head>
   <body>
     <h1>{{$title}}</h1>
+
+    <button type="button" class="btn btn-primary btn-dark-mode" id="toggleDarkMode">
+      <i class="fas fa-adjust"></i> Dark
+    </button>
+
+
 
     <input type="hidden" id="_token" value="{{csrf_token()}}">
 
@@ -80,6 +129,10 @@
 
 <script>
     $(document).ready(function () {
+
+      $('#toggleDarkMode').click(function () {
+        $('body').toggleClass('dark-mode');
+      });
 
 
         $(document).on("click", "#mail", function(e) {
@@ -129,7 +182,7 @@
                     console.log(response)
                     $('#numero').html(` ${response.id} `);
                     $('#mail').html(`
-                    <button type="button" class="btn btn-primary" id="enviarMail" data-cliente="${response.nombre_cliente}" data-mail="${response.email_cliente}">
+                    <button type="button" class="btn btn-primary btn-sendMail" id="enviarMail" data-cliente="${response.nombre_cliente}" data-mail="${response.email_cliente}">
                         <i class="fas fa-info-circle"></i> Enviar Mail
                     </button>`
                     );
