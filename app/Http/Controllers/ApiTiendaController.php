@@ -8,8 +8,16 @@ use Illuminate\Http\Request;
 class ApiTiendaController extends Controller
 {
     public function index(){
-
-        return response()->json(Tienda::all(), 200);
+         $tiendas = Tienda::with('user')->get();
+        // $tiendas = Tienda::all();
+        return response()->json(
+        [
+            'success' => true,
+            'message' => 'Datos entregados.',
+            'data' => $tiendas,
+            ]
+        
+        , 200);
     }
 
     public function store(Request $request)
